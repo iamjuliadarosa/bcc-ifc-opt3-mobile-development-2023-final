@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/TodoList.dart';
-import 'TaskItem.dart';
+import 'package:todo_app/DatabaseHelper.dart';
+import 'SplashScreen.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final dbHelper = DatabaseHelper();
+  await dbHelper.initDb();
+  runApp(MyApp(dbHelper: dbHelper));
 }
 
-List<TaskItem> ToDoTasks = [
-  TaskItem("01", "Tarefa Pendente", "Descricao da Tarefa Pendente", false)
-];
-List<TaskItem> CompletedTasks = [
-  TaskItem("02", "Tarefa Completa", "Descricao da Tarefa Completada.", true)
-];
-List<TaskItem> DeletedTasks = [
-  TaskItem("02", "Tarefa Apagada", "Descricao da Tarefa Apagada.", false)
-];
-String ToDoWeatherContent = 'rgaghasryjasryjsrayjaryj';
-
 class MyApp extends StatelessWidget {
+  final DatabaseHelper dbHelper;
+  MyApp({required this.dbHelper});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'To-Do-List', home: TodoList());
+    return MaterialApp(
+        title: 'To-Do-List', home: SplashScreen(dbHelper: dbHelper));
+  }
+
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused ||
+        state == AppLifecycleState.inactive) {
+      dbHelper.closeDb();
+    }
   }
 }

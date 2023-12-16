@@ -24,10 +24,10 @@ class DeletedTask extends StatelessWidget {
                 itemCount: DeletedTasks.length,
                 itemBuilder: (context, index) {
                   return TaskItem(
-                      DeletedTasks[index].id,
-                      DeletedTasks[index].title,
-                      DeletedTasks[index].description,
-                      DeletedTasks[index].completed);
+                      id: DeletedTasks[index].id,
+                      title: DeletedTasks[index].title,
+                      description: DeletedTasks[index].description,
+                      completed: DeletedTasks[index].completed);
                 },
               ),
             ),

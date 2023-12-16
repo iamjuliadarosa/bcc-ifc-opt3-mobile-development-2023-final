@@ -1,12 +1,26 @@
 import 'package:flutter/material.dart';
 
 class TaskItem extends StatelessWidget {
-  final String id;
-  final String title;
-  final String description;
+  String id;
+  String title;
+  String description;
   bool completed;
 
-  TaskItem(this.id, this.title, this.description, this.completed);
+  TaskItem({
+    required this.id,
+    required this.title,
+    required this.description,
+    this.completed = false,
+  });
+
+  Map<String, dynamic> toMap() {
+    return {'id': id, 'title': title, 'description': description};
+  }
+
+  factory TaskItem.fromMap(Map<String, dynamic> map) {
+    return TaskItem(
+        id: map['id'], title: map['title'], description: map['description']);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +29,7 @@ class TaskItem extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
             backgroundColor:
-                completed ? Colors.green[200] : Colors.orange[200]),
+                completed == 1 ? Colors.green[200] : Colors.orange[200]),
         onPressed: () {},
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

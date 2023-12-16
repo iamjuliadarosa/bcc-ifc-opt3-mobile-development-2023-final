@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'WeatherService.dart';
 
 class TemperatureWidget extends StatelessWidget {
   String content;

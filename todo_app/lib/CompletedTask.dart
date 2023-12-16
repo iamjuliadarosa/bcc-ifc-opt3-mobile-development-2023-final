@@ -28,10 +28,10 @@ class CompletedTask extends StatelessWidget {
                       duration: Duration(seconds: 2),
                       curve: Curves.fastOutSlowIn,
                       child: TaskItem(
-                          CompletedTasks[index].id,
-                          CompletedTasks[index].title,
-                          CompletedTasks[index].description,
-                          CompletedTasks[index].completed));
+                          id: CompletedTasks[index].id,
+                          title: CompletedTasks[index].title,
+                          description: CompletedTasks[index].description,
+                          completed: CompletedTasks[index].completed));
                 },
               ),
             ),

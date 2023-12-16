@@ -46,7 +46,7 @@ class TopNav extends StatelessWidget {
                   );
                 },
               )),
-          Text("< Deslize as tarefas para alterar para completar ou apagar >"),
+          Text("Deslize para alterar"),
           ElevatedButton(
               onPressed: () {},
               child: IconButton(
